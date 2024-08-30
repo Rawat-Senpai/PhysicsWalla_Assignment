@@ -34,6 +34,8 @@ class CharacterViewModel @Inject constructor(private val  apiRepository:Characte
 
     }
 
+
+
     val getCharacterDetails:LiveData<NetworkResult<AnimeCharacterDetailsResponseModel>?> get() = apiRepository.characterDetail
 
 

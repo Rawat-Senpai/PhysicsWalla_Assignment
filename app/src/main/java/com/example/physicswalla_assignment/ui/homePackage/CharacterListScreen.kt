@@ -36,7 +36,7 @@ fun CharacterListScreen(navController:NavController,viewModel: CharacterViewMode
             ErrorPopup(message = errorMessage ?: "An unknown error occurred")
         }
         is NetworkResult.Loading -> {
-            ProgressBar()
+//            ProgressBar()
         }
         is NetworkResult.Success -> {
 
@@ -44,7 +44,7 @@ fun CharacterListScreen(navController:NavController,viewModel: CharacterViewMode
 
             val characterList = (characterListState as NetworkResult.Success<CharacterApiResponseModel>).data?.results
             if (characterList != null) {
-                LayoutCharacterList(characterList)
+                LayoutCharacterList(characterList,navController)
 
             }
         }
@@ -56,10 +56,12 @@ fun CharacterListScreen(navController:NavController,viewModel: CharacterViewMode
 }
 
 @Composable
-fun LayoutCharacterList(characterList: List<Result>) {
+fun LayoutCharacterList(characterList: List<Result>, navController: NavController) {
     LazyColumn {
         items(characterList){it->
-            LayoutCharacterItem(character = it)
+            LayoutCharacterItem(character = it, onClick ={
+                navController.navigate("characterDetail/${it.id}")
+            })
 
         }
     }

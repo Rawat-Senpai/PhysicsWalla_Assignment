@@ -4,6 +4,7 @@ import com.example.physicswalla_assignment.models.AnimeCharacterDetailsResponseM
 import com.example.physicswalla_assignment.models.CharacterApiResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AnimeApi {
@@ -13,7 +14,7 @@ interface AnimeApi {
 
     @GET("character/{id}")
     suspend fun getAnimeCharacter(
-        @Query("id") imdbId: String,
+        @Path("id") characterId: String,
     ): Response<AnimeCharacterDetailsResponseModel>
 
 }

@@ -1,6 +1,7 @@
 package com.example.physicswalla_assignment.repository
 
 import android.net.Network
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.physicswalla_assignment.api.AnimeApi
@@ -31,9 +32,11 @@ class CharacterRepository  @Inject constructor(private val api: AnimeApi) {
     }
 
     suspend fun getCharacterDetails(characterId:String){
-
+        Log.d("repo_",characterId)
         _characterDetail.postValue(NetworkResult.Loading())
         val result = safeApiCall { api.getAnimeCharacter(characterId) }
+
+        Log.d("checkingCharacterRepo",result.toString())
         _characterDetail.postValue(result)
 
     }

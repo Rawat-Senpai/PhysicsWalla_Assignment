@@ -1,6 +1,7 @@
 package com.example.physicswalla_assignment.ui.widgets
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,11 +18,12 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.physicswalla_assignment.models.Result
 
 @Composable
-fun  LayoutCharacterItem(character : Result ) {
+fun  LayoutCharacterItem(character : Result , onClick :() -> Unit) {
     
     Row (modifier = Modifier
         .padding(8.dp)
-        .fillMaxWidth()){
+        .fillMaxWidth()
+        .clickable { onClick() }){
 
         Image(
             painter = rememberAsyncImagePainter(character.image),
