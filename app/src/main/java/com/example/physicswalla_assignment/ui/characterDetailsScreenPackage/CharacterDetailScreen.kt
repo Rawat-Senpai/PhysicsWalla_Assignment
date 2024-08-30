@@ -7,7 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Alignment
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -42,11 +41,7 @@ import com.example.physicswalla_assignment.utils.NetworkResult
 
 @Composable
 fun CharacterDetailScreen(characterId: String?, viewModel: CharacterViewModel) {
-    // Display character details based on the characterId
-    // You can retrieve details via the ViewModel or other means
-
-
-    val characterDetailsState by viewModel.getCharacterDetails.observeAsState()
+   val characterDetailsState by viewModel.getCharacterDetails.observeAsState()
     LaunchedEffect(Unit) {
         Log.d("valueCheck", characterId.toString())
         characterId?.let {
@@ -54,8 +49,6 @@ fun CharacterDetailScreen(characterId: String?, viewModel: CharacterViewModel) {
         }
 
     }
-
-
 
     when (characterDetailsState) {
         is NetworkResult.Error -> {

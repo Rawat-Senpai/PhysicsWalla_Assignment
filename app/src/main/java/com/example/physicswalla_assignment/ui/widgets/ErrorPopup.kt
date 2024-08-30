@@ -12,7 +12,7 @@ fun ErrorPopup(message: String) {
         title = { Text(text = "Error") },
         text = { Text(text = message) },
         confirmButton = {
-            TextButton(onClick = { /* Handle dismissal */ }) {
+            TextButton(onClick = {}) {
                 Text(text = "OK")
             }
         }
