@@ -3,7 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
 
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -100,6 +101,8 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("io.coil-kt:coil-compose:2.4.0")
+
+    implementation ("androidx.navigation:navigation-compose:2.7.0")
 
 
 }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.navigation.NavController
 import com.example.physicswalla_assignment.models.CharacterApiResponseModel
 import com.example.physicswalla_assignment.models.Result
 import com.example.physicswalla_assignment.ui.widgets.ErrorPopup
@@ -18,7 +19,7 @@ import com.example.physicswalla_assignment.utils.NetworkResult
 
 @Composable
 
-fun CharacterListScreen(viewModel: CharacterViewModel) {
+fun CharacterListScreen(navController:NavController,viewModel: CharacterViewModel) {
 
     val characterListState by viewModel.getCharacterList.observeAsState()
 
