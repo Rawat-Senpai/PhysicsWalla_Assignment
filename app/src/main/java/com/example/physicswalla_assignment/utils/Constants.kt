@@ -4,4 +4,3 @@ object Constants {
     const val BASE_URL="https://rickandmortyapi.com/api/"
 }
 
-//https://rickandmortyapi.com/api/character

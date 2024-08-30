@@ -1,4 +1,8 @@
 package com.example.physicswalla_assignment
 
-class MyApplication {
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class MyApplication:Application(){
 }
