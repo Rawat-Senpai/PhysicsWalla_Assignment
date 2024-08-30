@@ -4,11 +4,13 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.Alignment
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,15 +41,14 @@ import com.example.physicswalla_assignment.ui.widgets.ErrorPopup
 import com.example.physicswalla_assignment.utils.NetworkResult
 
 @Composable
-fun CharacterDetailScreen(characterId: String?,viewModel: CharacterViewModel) {
+fun CharacterDetailScreen(characterId: String?, viewModel: CharacterViewModel) {
     // Display character details based on the characterId
     // You can retrieve details via the ViewModel or other means
 
 
-
     val characterDetailsState by viewModel.getCharacterDetails.observeAsState()
     LaunchedEffect(Unit) {
-        Log.d("valueCheck",characterId.toString())
+        Log.d("valueCheck", characterId.toString())
         characterId?.let {
             viewModel.getCharacterDetails(characterId.toString())
         }
@@ -56,21 +57,24 @@ fun CharacterDetailScreen(characterId: String?,viewModel: CharacterViewModel) {
 
 
 
-    when(characterDetailsState){
+    when (characterDetailsState) {
         is NetworkResult.Error -> {
-            Log.d("checking",characterDetailsState?.message.toString())
+            Log.d("checking", characterDetailsState?.message.toString())
             val errorMessage = (characterDetailsState as NetworkResult.Error).message
             ErrorPopup(message = errorMessage ?: "An unknown error occurred")
         }
+
         is NetworkResult.Loading -> {
 //            ProgressBar()
         }
+
         is NetworkResult.Success -> {
 
-            Log.d("checking",characterDetailsState?.data.toString())
+            Log.d("checking", characterDetailsState?.data.toString())
             characterDetailsState?.data?.let { SetDetailUi(it) }
 
         }
+
         null -> {}
     }
 
@@ -81,19 +85,10 @@ fun SetDetailUi(character: AnimeCharacterDetailsResponseModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(1.dp)
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFFf6f7f9),
-                        Color(0xFFe2e8f0)
-                    )
-                ),
-                shape = RoundedCornerShape(16.dp)
-            )
-            .shadow(elevation = 8.dp, shape = RoundedCornerShape(16.dp))
-            .padding(16.dp)
+            .shadow(elevation = 2.dp, shape = RoundedCornerShape(5.dp))
+            .padding(8.dp)
     ) {
+
         // Character Image
         Image(
             painter = rememberAsyncImagePainter(character.image),
